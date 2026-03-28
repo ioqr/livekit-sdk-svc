@@ -636,6 +636,10 @@ type TrackPublicationOptions struct {
 	// encryption type
 	Encryption        livekit.Encryption_Type
 	BackupCodecPolicy livekit.BackupCodecPolicy
+	// VideoLayers overrides the default single-layer declaration for SVC tracks.
+	// When set, all entries are sent to the SFU in AddTrackRequest.Layers so the
+	// server knows how many spatial layers the track carries.
+	VideoLayers []*livekit.VideoLayer
 }
 
 type MuteFunc func(muted bool) error

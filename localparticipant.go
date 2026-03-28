@@ -144,13 +144,17 @@ func (p *LocalParticipant) PublishTrack(track webrtc.TrackLocal, opts *TrackPubl
 		BackupCodecPolicy: opts.BackupCodecPolicy,
 	}
 	if kind == TrackKindVideo {
-		// single layer
-		req.Layers = []*livekit.VideoLayer{
-			{
-				Quality: livekit.VideoQuality_HIGH,
-				Width:   uint32(opts.VideoWidth),
-				Height:  uint32(opts.VideoHeight),
-			},
+		if len(opts.VideoLayers) > 0 {
+			req.Layers = opts.VideoLayers
+		} else {
+			// single layer
+			req.Layers = []*livekit.VideoLayer{
+				{
+					Quality: livekit.VideoQuality_HIGH,
+					Width:   uint32(opts.VideoWidth),
+					Height:  uint32(opts.VideoHeight),
+				},
+			}
 		}
 	}
 
