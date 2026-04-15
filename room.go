@@ -155,6 +155,12 @@ func WithICETransportPolicy(iceTransportPolicy webrtc.ICETransportPolicy) Connec
 	}
 }
 
+func WithSettingEngineMutator(fn func(*webrtc.SettingEngine)) ConnectOption {
+	return func(p *signalling.ConnectParams) {
+		p.SettingEngineMutator = fn
+	}
+}
+
 // WithDisableRegionDiscovery disables automatic region discovery for LiveKit Cloud.
 func WithDisableRegionDiscovery() ConnectOption {
 	return func(p *signalling.ConnectParams) {

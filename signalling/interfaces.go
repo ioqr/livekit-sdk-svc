@@ -89,6 +89,8 @@ type ConnectParams struct {
 
 	ICETransportPolicy webrtc.ICETransportPolicy
 
+	SettingEngineMutator func(*webrtc.SettingEngine)
+
 	// internal use
 	Codecs []webrtc.RTPCodecParameters
 }
